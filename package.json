@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --hot",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "zsolt-nagy.github.io/BootstrapDemo",
+  "homepage": "zsolt-nagy.github.io/bootstrap-webpack",
   "keywords": [],
   "author": "",
   "license": "ISC",
