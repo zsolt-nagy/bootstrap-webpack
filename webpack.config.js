@@ -1,13 +1,19 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './js/index.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'dist/'
   },
   mode: 'development',
+  devServer: {
+    contentBase: path.resolve(__dirname, './dist'),
+    index: 'index.html',
+    port: 8000
+  },
   module: {
     rules: [
       {
@@ -25,8 +31,23 @@ module.exports = {
             loader: 'file-loader',
           },
         ],
+      },
+      {
+        test: /index.html$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'index.html'
+            }
+          }
+        ]
       }
     ]
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new TerserWebpackPlugin(),
+  ]
 };
 
